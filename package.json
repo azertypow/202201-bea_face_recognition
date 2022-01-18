@@ -1,0 +1,21 @@
+{
+  "name": "202201-bea_face_recognition",
+  "version": "1.0.0",
+  "description": "bea face recognition prototype",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "npm run copie-public && parcel watch & npm run serve-public",
+    "build": "parcel build",
+    "serve-public": "http-server dist/ -p 8080 -c-1 -a localhost --cors=\"*\"",
+    "revome-copied-public": "rm -rf dist/public/",
+    "copie-public": "cp -a src/public/ dist/public/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@parcel/transformer-sass": "^2.2.0",
+    "face-api.js": "^0.22.2",
+    "http-server": "^14.1.0",
+    "parcel": "^2.2.0"
+  }
+}
