@@ -22,3 +22,5 @@ you can open this link in your brother
 ``` bash
 http://localhost:8080/
 ```
+
+To change sound, replace file ```/src/public/_sound.mp3```, with same name.
