@@ -8,6 +8,7 @@ import {
 } from "face-api.js"
 import {Info} from "./Info.js"
 import {Circle} from "./Circle.js"
+import {AudioControl} from "./AudioControl";
 
 const CURRENT_FACE_DETECTOR = nets.tinyFaceDetector
 const FACE_DETECTION_OPTION = new TinyFaceDetectorOptions({
@@ -19,6 +20,7 @@ const VIDEO_ELEMENT = document.querySelector('video')
 
 const info = new Info()
 const circle = new Circle()
+const audioControl = new AudioControl()
 
 async function main() {
     info.log = 'init'
@@ -73,7 +75,7 @@ export async function onPlay(videoEl) {
         width:  100,
     })
 
-    const faceDetected = Array.isArray( resizedResults )
+    const faceDetected = resizedResults[0] !== undefined
 
     info.info = {
         y: faceDetected ? 100 - resizedResults[0]?.box.y        : null,
@@ -83,12 +85,13 @@ export async function onPlay(videoEl) {
         faceDetected: faceDetected
     }
 
-    circle.x        = faceDetected ? resizedResults[0]?.box.y       : 0
-    circle.y        = faceDetected ? resizedResults[0]?.box.x       : 0
-    circle.height   = faceDetected ? resizedResults[0]?.box.width   : 5
-    circle.width    = faceDetected ? resizedResults[0]?.box.height  : 5
+    if (faceDetected) circle.x = resizedResults[0]?.box.x
+    if (faceDetected) circle.y = resizedResults[0]?.box.y
+    circle.height       = faceDetected ? resizedResults[0]?.box.width   : 5
+    circle.width        = faceDetected ? resizedResults[0]?.box.height  : 5
+    circle.background   = faceDetected ? "black" : "red"
 
-
+    audioControl.volume = faceDetected ? 100 - resizedResults[0]?.box.y   : 0
 
     setTimeout(() => onPlay(videoEl))
 }
