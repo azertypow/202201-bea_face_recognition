@@ -18,11 +18,25 @@ const FACE_DETECTION_OPTION = new TinyFaceDetectorOptions({
 // const selectedFaceDetector = 'tiny_face_detector'
 const VIDEO_ELEMENT = document.querySelector('video')
 
-const info = new Info()
-const circle = new Circle()
-const audioControl = new AudioControl()
+const info          = new Info()
+const circle        = new Circle()
+const audioControl  = new AudioControl()
 
-async function main() {
+
+async function main(){
+    console.log('ini')
+
+    // script entry point
+    document.querySelector(".start").addEventListener("click", () => {
+        console.log("click")
+        audioControl.play()
+        start()
+        document.querySelector(".start").style.display = "none"
+    })
+}
+main()
+
+async function start() {
     info.log = 'init'
 
     VIDEO_ELEMENT
@@ -49,7 +63,6 @@ async function main() {
     await onPlay( VIDEO_ELEMENT )
 
 }
-main()
 
 export  function isFaceDetectionModelLoaded() {
     return !!CURRENT_FACE_DETECTOR.params

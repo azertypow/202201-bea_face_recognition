@@ -5,12 +5,12 @@ export class AudioControl {
 
     constructor() {
         this.#element.setAttribute('src', 'public/_sound.mp3')
-        this.#element.setAttribute('autoplay', 'autoplay')
         this.#element.loop = true
-        this.#element.play()
 
         this.#setVolume()
     }
+
+    play() {this.#element.play()}
 
     /**
      * @param {number} value between 0 et 100
