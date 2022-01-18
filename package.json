@@ -8,7 +8,7 @@
     "build": "parcel build",
     "serve-public": "http-server dist/ -p 8080 -c-1 -a localhost --cors=\"*\"",
     "revome-copied-public": "rm -rf dist/public/",
-    "copie-public": "cp -a src/public/ dist/public/"
+    "copie-public": "mkdir -p dist && cp -a src/public/ dist/public/"
   },
   "author": "",
   "license": "ISC",

@@ -1,4 +1,9 @@
 body,
 html {
-  color: blue;
+  margin: 0;
+}
+
+video {
+  opacity: 0;
+  pointer-events: none;
 }
